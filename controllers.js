@@ -1,20 +1,20 @@
 /**
  * Created by sandeep on 10/6/2015.
  */
-var hackathon = angular.module('hackathon',['ui.router']);
+var hackathon = angular.module('hackathon',['ui.router','datamaps']);
 hackathon.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
         .state('homepage',{
             url:'/',
             templateUrl: '/homepage.html',
-            contoller: 'homepageController'
+            controller: 'homepageController'
         });
     $urlRouterProvider.otherwise('/');
 })
     .factory('stateService',function(){
         return {
-            getAllStates : function(){
-                var states = [
+            getAllStates: function(){
+                return states = [
                     {id:"AL",value:"Alabama"},
                     {id:"AK",value:"Alaska"},
                     {id:"AZ",value:"Arizona"},
@@ -65,12 +65,32 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
                     {id:"WA",value:"Washington"},
                     {id:"WV",value:"West Virginia"},
                     {id:"WI",value:"Wisconsin"},
-                    {id:"WY",value:"Wyoming"}, 
+                    {id:"WY",value:"Wyoming"}
                     ]
             }
         }
     })
     .controller('homepageController',['stateService','$scope',function(stateService,$scope){
+        $scope.states=stateService.getAllStates();
+        $scope.mapObject = {
+            scope: 'usa',
+            options: {
+                width: 1110,
+                legendHeight: 60 // optionally set the padding for the legend
+            },
+            geographyConfig: {
+                highlighBorderColor: '#EAA9A8',
+                highlighBorderWidth: 2
+            },
+        }
+        $scope.stateSelected = function(){
 
-        $scope.states=stateService.getAllStates().states;
+        }
+        $scope.updateActiveGeography = function(geography){
+            $scope.clickedState = geography.properties.name;
+            $scope.clickedStateId = geography.id;
+            console.log($scope.clickedState);
+            console.log($scope.clickedStateId);
+
+        }
     }]);
