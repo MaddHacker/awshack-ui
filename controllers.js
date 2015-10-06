@@ -11,9 +11,6 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
         });
     $urlRouterProvider.otherwise('/');
 })
-    .run(function($rootScope){
-
-    })
     .factory('stateService',function(){
         return {
             getAllStates : function(){
@@ -74,5 +71,6 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
         }
     })
     .controller('homepageController',['stateService','$scope',function(stateService,$scope){
-        $scope.states=stateService.getAllStates();
+
+        $scope.states=stateService.getAllStates().states;
     }]);
