@@ -1,13 +1,21 @@
-<h1>Home Page</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <select>
-                <option ng-options="state as state.id for state in states" ng-model="selectedState" ng-change="stateSelected()"></option>
-            </select>
+            <div class="form-group col-md-offset-2">
+                <select class="form-control" ng-options="state.id as state.value for state in states" ng-model="selectedState" ng-change="stateSelected()">
+                </select>
+            </div>
         </div>
     </div>
     <div class="row">
-        <h1>Selected State is {{selectedState}}</h1>
+        <datamap
+                map="mapObject"
+                on-click="updateActiveGeography"
+                >
+        </datamap>
+    </div>
+    <div class="row">
+        <p ng-bind="clickedState"></p>
+        <p ng-bind="clickedStateId"</p>
     </div>
 </div>
