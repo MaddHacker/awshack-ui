@@ -73,6 +73,6 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             }
         }
     })
-    .contoller('homepageController',['stateService','$scope',function(stateService,$scope){
+    .controller('homepageController',['stateService','$scope',function(stateService,$scope){
         $scope.states=stateService.getAllStates();
     }]);
