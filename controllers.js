@@ -5,7 +5,7 @@ var hackathon = angular.module('hackathon',['ui.router']);
 hackathon.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
         .state('homepage',{
-            url:'homepage',
+            url:'/',
             templateUrl: '/homepage.html',
             contoller: function(){
             }
