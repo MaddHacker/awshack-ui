@@ -1,1 +1,13 @@
 <h1>Home Page</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <select>
+                <option ng-options="state as state.id for state in states" ng-model="selectedState" ng-change="stateSelected()"></option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <h1>Selected State is {{selectedState}}</h1>
+    </div>
+</div>
