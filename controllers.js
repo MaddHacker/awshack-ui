@@ -25,6 +25,9 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
         return {
             getDonations: function() {
                 return get('donations');
+            },
+            getDetail: function(state) {
+                return get('detail/'+state);
             }
         };
 
@@ -98,7 +101,9 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
     })
     .controller('detailController',['$scope','$stateParams','dataService', function($scope,$stateParams,dataService) {
         $scope.state = $stateParams.state;
-        $scope.detail = [];
+        dataService.getDetail($scope.state).then(function(detail) {
+            $scope.detail = detail; 
+        });
     }])
     .controller('donationController',['$scope','dataService',function($scope,dataService) {
         dataService.getDonations().then(function(donations) {
