@@ -8,9 +8,30 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             url:'/',
             templateUrl: '/homepage.html',
             controller: 'homepageController'
+        })
+        .state('donations', {
+            url:'/donations',
+            templateUrl: '/donations.html',
+            controller: 'donationController'
         });
     $urlRouterProvider.otherwise('/');
 })
+    .factory('dataService', function($http,$q) {
+        return {
+            getDonations: function() {
+                return get('donations');
+            }
+        };
+
+        function get(path) {
+            var deferred = $q.defer();
+            var url = "http://app.donorsview.cool/" + path;
+            $http.get(url).then(function(response) {
+                deferred.resolve(response.data);
+            });
+            return deferred.promise;
+        };
+    })
     .factory('stateService',function(){
         return {
             getAllStates: function(){
@@ -66,10 +87,15 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
                     {id:"WV",value:"West Virginia"},
                     {id:"WI",value:"Wisconsin"},
                     {id:"WY",value:"Wyoming"}
-                ]
+                ];
             }
-        }
+        };
     })
+    .controller('donationController',['$scope','dataService',function($scope,dataService) {
+        dataService.getDonations().then(function(donations) {
+            $scope.donations = donations;
+        });
+    }])
     .controller('homepageController',['stateService','$scope',function(stateService,$scope){
         $scope.states=stateService.getAllStates();
         $scope.mapObject = {
