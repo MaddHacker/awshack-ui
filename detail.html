@@ -1,23 +1,16 @@
-<div class="container">
-  <div class="row">
-    <ol class="breadcrumb">
-      <li><a ui-sref="homepage">All States</a></li>
-      <li class="active">{{state}}</li>
-    </ol>
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Rankings for {{state}}</div>
-      <table class="table">
-        <tr>
-          <th>Focus Area</th>
-          <th>Funds Requested</th>
-          <th>Funds Received</th>
-        </tr>
-        <tr ng-repeat="row in detail">
-          <td>{{row.primary_focus_area}}</td>
-          <td>#{{row.donation_rank}}</td>
-          <td>#{{row.request_rank}}</td>
-        </td>
-     </div>
-  </div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Rankings for {{state}}</div>
+  <table class="table">
+    <tr>
+      <th>Focus Area</th>
+      <th>Funds Requested</th>
+      <th>Funds Received</th>
+    </tr>
+    <tr ng-repeat="row in detail">
+      <td>{{row.primary_focus_area}}</td>
+      <td>#{{row.donation_rank}}</td>
+      <td>#{{row.request_rank}}</td>
+    </tr>
+  </table>
 </div>

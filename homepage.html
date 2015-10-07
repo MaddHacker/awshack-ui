@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group col-md-offset-2">
-                <select class="form-control" ng-options="state.id as state.value for state in states" ng-model="selectedState" ng-change="stateSelected()">
-                </select>
-            </div>
-        </div>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>This app lets you explore how the different states rank for funding
+    across different subject areas, and the poverty levels of each of the
+    schools</p>
+    <p>Select a state below to see how it ranks</p>
+  </div>
+</div>
     <div class="row">
         <datamap
                 map="mapObject"
@@ -14,29 +14,7 @@
                 >
         </datamap>
     </div>
-    <div class="row"></div>
-    <table class="table table-striped table-hover">
-        <thead>
-            <th>
-                Name
-            </th>
-            <th>
-                Rank
-            </th>
-            <th>
-                Rank
-            </th>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+      <div ui-view></div>
+    </div>
 </div>

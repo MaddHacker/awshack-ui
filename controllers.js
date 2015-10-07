@@ -9,7 +9,7 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             templateUrl: '/homepage.html',
             controller: 'homepageController'
         })
-        .state('detail', {
+        .state('homepage.detail', {
             url:'/detail/:state',
             templateUrl: '/detail.html',
             controller: 'detailController'
@@ -116,7 +116,7 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             scope: 'usa',
             options: {
                 staticGeoData: true,
-                width: 1110,
+                width: 800,
                 legendHeight: 60 // optionally set the padding for the legend
             },
             geographyConfig: {
@@ -344,6 +344,6 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             console.log(geography.id);
             $scope.mapObject.data[geography.id].fillKey="highlight";
             //alert($scope.mapObject.data[geography.id].fillKey);
-            $state.go('detail',{state: geography.id});
+            $state.go('homepage.detail',{state: geography.id});
         }
     }]);
