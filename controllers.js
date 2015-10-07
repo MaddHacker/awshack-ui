@@ -9,6 +9,11 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             templateUrl: '/homepage.html',
             controller: 'homepageController'
         })
+        .state('detail', {
+            url:'/detail/:state',
+            templateUrl: '/detail.html',
+            controller: 'detailController'
+        })
         .state('donations', {
             url:'/donations',
             templateUrl: '/donations.html',
@@ -91,12 +96,16 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             }
         };
     })
+    .controller('detailController',['$scope','$stateParams','dataService', function($scope,$stateParams,dataService) {
+        $scope.state = $stateParams.state;
+        $scope.detail = [];
+    }])
     .controller('donationController',['$scope','dataService',function($scope,dataService) {
         dataService.getDonations().then(function(donations) {
             $scope.donations = donations;
         });
     }])
-    .controller('homepageController',['stateService','$scope',function(stateService,$scope){
+    .controller('homepageController',['$state','stateService','$scope',function($state,stateService,$scope){
         $scope.states=stateService.getAllStates();
         $scope.mapObject = {
             scope: 'usa',
@@ -326,9 +335,10 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
 
         }
         $scope.updateActiveGeography = function(geography){
-            alert(geography.id);
+            //alert(geography.id);
             console.log(geography.id);
             $scope.mapObject.data[geography.id].fillKey="highlight";
-            alert($scope.mapObject.data[geography.id].fillKey);
+            //alert($scope.mapObject.data[geography.id].fillKey);
+            $state.go('detail',{state: geography.id});
         }
     }]);
