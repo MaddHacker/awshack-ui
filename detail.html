@@ -14,3 +14,17 @@
     </tr>
   </table>
 </div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Poverty levels for {{state}}</div>
+  <table class="table">
+    <tr>
+      <th>Poverty Level</th>
+      <th>Rank</th>
+    </tr>
+    <tr ng-repeat="row in poverty">
+      <td>{{row.poverty_level}}</td>
+      <td>#{{row.school_count}}</td>
+    </tr>
+  </table>
+</div>

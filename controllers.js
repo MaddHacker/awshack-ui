@@ -28,6 +28,9 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
             },
             getDetail: function(state) {
                 return get('detail/'+state);
+            },
+            getPoverty: function(state) {
+                return get('poverty/'+state);
             }
         };
 
@@ -103,6 +106,9 @@ hackathon.config(function($stateProvider,$urlRouterProvider){
         $scope.state = $stateParams.state;
         dataService.getDetail($scope.state).then(function(detail) {
             $scope.detail = detail; 
+        });
+        dataService.getPoverty($scope.state).then(function(poverty) {
+            $scope.poverty = poverty;
         });
     }])
     .controller('donationController',['$scope','dataService',function($scope,dataService) {
